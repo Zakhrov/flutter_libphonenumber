@@ -2,7 +2,6 @@ package com.bottlepay.flutter_libphonenumber
 
 import android.os.Handler
 import android.os.Looper
-import androidx.annotation.NonNull
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberType
@@ -24,7 +23,7 @@ public class FlutterLibphonenumberPlugin : FlutterPlugin, MethodCallHandler {
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel: MethodChannel
 
-  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onAttachedToEngine( flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "flutter_libphonenumber")
     channel.setMethodCallHandler(this);
   }
@@ -46,7 +45,7 @@ public class FlutterLibphonenumberPlugin : FlutterPlugin, MethodCallHandler {
     }
   }
 
-  override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+  override fun onMethodCall( call: MethodCall, result: Result) {
     when (call.method) {
       "get_all_supported_regions" -> {
         getAllSupportedRegions(result)
@@ -62,7 +61,7 @@ public class FlutterLibphonenumberPlugin : FlutterPlugin, MethodCallHandler {
     }
   }
 
-  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+  override fun onDetachedFromEngine( binding: FlutterPlugin.FlutterPluginBinding) {
     channel.setMethodCallHandler(null)
   }
 
